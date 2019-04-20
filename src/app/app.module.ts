@@ -13,12 +13,16 @@ import { MyOrdersComponent } from './views/garage/my-orders/my-orders.component'
 import { StoreInstanceComponent } from './views/store/store-instance/store-instance.component';
 import { PartComponent } from './views/store/part/part.component';
 import { EditPartsComponent } from './views/store/edit-parts/edit-parts.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 //client Services
 import {UserService} from "./services/user.service.client";
 import {GarageServiceClient} from "./services/garage.service.client";
 import {StoreServiceClient} from "./services/store.service.client";
+import {PartServiceClient} from "./services/part.service.client";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -37,9 +41,11 @@ import {StoreServiceClient} from "./services/store.service.client";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [UserService, StoreServiceClient, GarageServiceClient],
+  providers: [UserService, StoreServiceClient, GarageServiceClient, PartServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

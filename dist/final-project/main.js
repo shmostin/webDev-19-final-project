@@ -166,9 +166,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_store_store_instance_store_instance_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/store/store-instance/store-instance.component */ "./src/app/views/store/store-instance/store-instance.component.ts");
 /* harmony import */ var _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/store/part/part.component */ "./src/app/views/store/part/part.component.ts");
 /* harmony import */ var _views_store_edit_parts_edit_parts_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/store/edit-parts/edit-parts.component */ "./src/app/views/store/edit-parts/edit-parts.component.ts");
-/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/user.service.client */ "./src/app/services/user.service.client.ts");
-/* harmony import */ var _services_garage_service_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/garage.service.client */ "./src/app/services/garage.service.client.ts");
-/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/store.service.client */ "./src/app/services/store.service.client.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/user.service.client */ "./src/app/services/user.service.client.ts");
+/* harmony import */ var _services_garage_service_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/garage.service.client */ "./src/app/services/garage.service.client.ts");
+/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/store.service.client */ "./src/app/services/store.service.client.ts");
+/* harmony import */ var _services_part_service_client__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/part.service.client */ "./src/app/services/part.service.client.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
 
 
 
@@ -185,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //client Services
+
+
 
 
 
@@ -208,9 +214,11 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"]
             ],
-            providers: [_services_user_service_client__WEBPACK_IMPORTED_MODULE_15__["UserService"], _services_store_service_client__WEBPACK_IMPORTED_MODULE_17__["StoreServiceClient"], _services_garage_service_client__WEBPACK_IMPORTED_MODULE_16__["GarageServiceClient"]],
+            providers: [_services_user_service_client__WEBPACK_IMPORTED_MODULE_16__["UserService"], _services_store_service_client__WEBPACK_IMPORTED_MODULE_18__["StoreServiceClient"], _services_garage_service_client__WEBPACK_IMPORTED_MODULE_17__["GarageServiceClient"], _services_part_service_client__WEBPACK_IMPORTED_MODULE_19__["PartServiceClient"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
@@ -681,7 +689,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>StoreFront</title>\n  <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css\" rel=\"stylesheet\"/>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n  <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.7.0/css/all.css\"\n        integrity=\"sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ\" crossorigin=\"anonymous\">\n  <link rel=\"stylesheet\" href=\"css/styles.css\"/>\n\n</head>\n\n<body>\n<!--MY CART NAV: back button / page title-->\n<nav class=\"navbar cl-grey-navbar fixed-top\">\n  <div class=\"container-fluid\">\n    <a (click)=\"backOnePage()\" class=\"navbar-link \">\n      <span class=\"cl-text-white fas fa-chevron-left\"></span>\n    </a>\n\n    <span class=\"cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding\">\n      Cart\n    </span>\n  </div>\n</nav>\n\n<!--List of part in my cart-->\n<!--TODO:change so that each part is ordered individually instead of all of them-->\n<main>\n  <div class=\"container above-below-space\">\n    <ul class=\"list-group list-borderless\">\n      <li class=\"list-group-item list-borderless\" *ngFor=\"let part of parts\">\n        <!--Route to the part listing-->\n        <a routerLink=\"/user/{{userId}}/part/{{part._id}}/listing\">{{part.name}}</a>\n        <!--Remove the part from your cart-->\n        <a (click)=\"removeFromCart(part._id, part.name)\"><i class=\"far fa-minus-square float-right\"></i></a>\n      </li>\n    </ul>\n  </div>\n</main>\n\n<div class=\"container\">\n  <a class=\"btn save-btn-color btn-block\" (click)=\"orderTheseParts()\">Order!</a>\n</div>\n\n\n<!--NAVBAR: profile-->\n<!--TODO: maybe make a function to route back to the users profile page-->\n<nav class=\"navbar fixed-bottom cl-grey-navbar\">\n  <div class=\"container-fluid\">\n    <a class=\"align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding\" [routerLink]=\"['../../' + userId]\">\n    </a>\n  </div>\n</nav>\n\n</body>\n</html>\n"
+module.exports = "\n<!--MY CART NAV: back button / page title-->\n<nav class=\"navbar cl-grey-navbar fixed-top\">\n  <div class=\"container-fluid\">\n    <a (click)=\"backOnePage()\" class=\"navbar-link \">\n      <span class=\"cl-text-white fas fa-chevron-left\"></span>\n    </a>\n\n    <span class=\"cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding\">\n      Cart\n    </span>\n  </div>\n</nav>\n\n<!--List of part in my cart-->\n<!--TODO:change so that each part is ordered individually instead of all of them-->\n<main>\n  <div class=\"container above-below-space\">\n    <ul class=\"list-group list-borderless\">\n      <li class=\"list-group-item list-borderless\" *ngFor=\"let part of parts\">\n        <!--Route to the part listing-->\n        <a routerLink=\"/user/{{userId}}/part/{{part._id}}/listing\">{{part.name}}</a>\n        <!--Remove the part from your cart-->\n        <a (click)=\"removeFromCart(part._id, part.name)\"><i class=\"far fa-minus-square float-right\"></i></a>\n      </li>\n    </ul>\n  </div>\n</main>\n\n<div class=\"container\">\n  <a class=\"btn save-btn-color btn-block\" (click)=\"orderTheseParts()\">Order!</a>\n</div>\n\n\n<!--NAVBAR: profile-->\n<!--TODO: maybe make a function to route back to the users profile page-->\n<nav class=\"navbar fixed-bottom cl-grey-navbar\">\n  <div class=\"container-fluid\">\n    <a class=\"align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding\" [routerLink]=\"['../../' + userId]\">\n    </a>\n  </div>\n</nav>\n\n"
 
 /***/ }),
 
