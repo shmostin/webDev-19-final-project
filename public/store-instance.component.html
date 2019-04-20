@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StoreFront</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css"/>
+
+</head>
+
+
+<!--TODO: create backOnePage() method and binding for store.name-->
+<body>
+<!--NAV BAR-->
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a href="#" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+    <a class="cl-text-white navbar-brand mb-0 h5 cl-header-padding" href="#">
+      Store Name
+    </a>
+  </div>
+</nav>
+
+<!--LISTINGS-->
+<!--'user/:uid/store/:storeid/part/:partid/listing'-->
+
+<div class="container-fluid">
+  <div class="table">
+  <ul class="list-group cl-list-group-borderless text-align:left">
+    <li class="list-group-item cl-list-item-borderless">
+      <a class="cl-listing-color" routerLink="/user/{{userId}}/store/{{storeId}}/part/{{partId}}/listing">Part Name</a>
+      <p class="cl-listing-color float-right part-listings-bottom-margin">$40.00</p>
+    </li>
+  </ul>
+  </div>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" href="#">
+    </a>
+  </div>
+</nav>
+
+</body>
+</html>

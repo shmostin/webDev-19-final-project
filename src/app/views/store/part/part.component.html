@@ -1,0 +1,47 @@
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="backOnePage()" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+
+    <!--TODO:make it so that the header 'part' loads the name of the listing-->
+    <span class="cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding text-center">
+      Part
+    </span>
+  </div>
+</nav>
+
+
+<!--In the ngOnInit for this page, use a part number to call the userService to find and return the part-->
+
+<!--Part Description-->
+
+
+<!--Part Price-->
+
+<!--Buy button-->
+
+
+<!--Insert an image of the part here-->
+
+
+<!--contains the part image/description/price-->
+<div class="container">
+  <div class="row">
+    <h3>H3 header</h3>
+  </div>
+  <div class="block">
+    <div class="row">
+      <div class="span4">
+        <img class="imageSize img-left" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg">
+        <div class="content-heading"><h3>Description</h3></div>
+        <!--TODO: ngOnInit retrieve the part information from a service-->
+        <p>{{part.description}}</p>
+        <p>{{part.price}}</p>
+        <button onclick="addToCart()">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

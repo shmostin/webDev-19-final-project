@@ -1,0 +1,34 @@
+=
+
+<!--NAV BAR-->
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="backOnePage()" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+    <a class="cl-text-white navbar-brand mb-0 h5 cl-header-padding" href="#">
+      Store Name
+    </a>
+  </div>
+</nav>
+
+<!--LISTINGS-->
+
+<div class="container-fluid">
+  <div class="table">
+    <ul class="list-group cl-list-group-borderless text-align:left">
+      <li class="list-group-item cl-list-item-borderless" *ngFor="let part of parts">
+        <a class="cl-listing-color" routerLink="/user/{{userId}}/store/{{storeId}}/part/{{part._id}}/listing">{{part.name}}</a>
+        <p class="cl-listing-color float-right part-listings-bottom-margin">{{part.price}}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" href="#">
+    </a>
+  </div>
+</nav>
+

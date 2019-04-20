@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StoreFront</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css"/>
+
+</head>
+
+
+<!--TODO: Create methods for create user login and cancel-->
+<body>
+<div class="container">
+
+  <!--Heading/Page name-->
+  <h1 class="text-center pageName">Register</h1>
+
+  <!--Some error messaging-->
+  <div *ngIf="userErrorFlag" class="alert alert-danger">
+    {{userErrorMsg}}
+  </div>
+
+  <!--FORM for REGISTRATION-->
+  <form (ngSubmit)="createUser()" #f="ngForm">
+    <div class="form-group">
+      <!--USERNAME-->
+      <input type="text"
+             class="form-control"
+             placeholder="username"
+             name="username"
+             id="username"
+             ngModel
+             required
+             #username="ngModel"/>
+    </div>
+
+    <!--PASSWORD-->
+    <div class="form-group">
+      <input type="password"
+             class="form-control"
+             placeholder="Password"
+             name="password"
+             id="password"
+             ngModel
+             required
+             #password="ngModel"/>
+    </div>
+
+    <!--VERIFY PASSWORD-->
+    <div class="form-group">
+      <input type="password"
+             class="form-control"
+             placeholder="Verify Password"
+             id="vpassword"
+             name="vpassword"
+             ngModel
+             required
+             #v_password="ngModel"/>
+    </div>
+
+    <!--PASSWORD ERROR MESSAGE-->
+    <div *ngIf="pwdErrorFlag" class="alert alert-danger">
+      {{pwdErrorMsg}}
+    </div>
+
+    <!--SUBMIT BUTTON-->
+    <a class="btn save-btn-color btn-block"
+            type="submit"
+            [disabled]="!f.valid">Register
+    </a>
+
+    <!--CANCEL BUTTON--BACK TO LOGIN PAGE-->
+    <a class="btn btn-danger btn-block"
+            type="submit"
+            routerLink="/login">Cancel
+    </a>
+  </form>
+</div>
+
+</body>
+</html>
+

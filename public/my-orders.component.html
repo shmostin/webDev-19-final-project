@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StoreFront</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css"/>
+
+</head>
+<body>
+<!--MY ORDERS NAV: back button / page title-->
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="backOnePage()" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+
+    <span class="cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding">
+      Orders
+    </span>
+  </div>
+</nav>
+
+
+<!--List of my orders-->
+
+<main>
+  <div class="container above-below-space">
+    <ul class="list-group list-borderless">
+      <li class="list-group-item list-borderless" *ngFor="let part of orders">
+        <!--Route to the part listing-->
+        <a routerLink="/user/{{userId}}/part/{{part._id}}/listing">{{part.name}}</a>
+        <!--Remove the part from your cart-->
+        <a (click)="removeFromOrders()"><i class="far fa-minus-square float-right"></i></a>
+      </li>
+    </ul>
+  </div>
+</main>
+
+
+<!--NAVBAR: profile-->
+<!--TODO: maybe make a function to route back to the users profile page-->
+<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" [routerLink]="['../../' + userId]">
+    </a>
+  </div>
+</nav>
+
+</body>
+</html>

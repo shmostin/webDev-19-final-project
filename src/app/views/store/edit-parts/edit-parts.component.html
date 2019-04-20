@@ -1,0 +1,73 @@
+<body>
+
+<!--top nav-->
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="backOnePage()" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+    <a class="cl-text-white navbar-brand mb-0 h5 cl-header-padding" href="#">
+      Edit Part
+    </a>
+  </div>
+</nav>
+
+
+<!--form body-->
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="partName">Part Name</label>
+      <input type="text"
+             class="form-control"
+             id="partName"
+             placeholder="Part Name"
+             [ngModel]="getOldPartName()"
+             ngModel
+             #partName="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="partDescription">Part Description</label>
+      <input type="text"
+             class="form-control"
+             id="partDescription"
+             placeholder="Part Description"
+             [ngModel]="getOldPartDescription()"
+             ngModel
+             #partDescription="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="partPrice">Part Price</label>
+      <input type="number"
+             class="form-control"
+             id="partPrice"
+             placeholder="Price"
+             [ngModel]="getOldPartPrice()"
+             ngModel
+             #partPrice="ngModel">
+    </div>
+
+    <!--upload/change image-->
+    <!--<div class="form-group">-->
+    <!--<label for="part-Description">Part Description</label>-->
+    <!--<input type="text"-->
+    <!--class="form-control"-->
+    <!--id="part-Description"-->
+    <!--placeholder="Page Title">-->
+    <!--</div>-->
+  </form>
+  <a class="btn save-btn-color btn-block" (click)="updatePart()">Save</a>
+  <a class="btn btn-danger btn-block" (click)="deletePart()">Delete</a>
+</div>
+
+
+<!--bottom nav-->
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" href="#">
+    </a>
+  </div>
+</nav>
+
+
+</body>

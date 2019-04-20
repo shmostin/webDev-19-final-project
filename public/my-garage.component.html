@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StoreFront</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css"/>
+
+</head>
+
+<body>
+
+<!--NAVBAR: ALL STORES/ PAGE HEADING/ CART/ ORDERS-->
+<nav class="navbar cl-grey-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="toAllStores()" class="navbar-link">
+      <span class="cl-text-white">All Stores</span>
+    </a>
+
+    <span class="cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding">
+      My Garage
+    </span>
+
+    <div class="float-right">
+      <a (click)="getCartItems()" class="navbar-link cl-text-white cl-cart-padding">
+        <span class="cl-text-white fas fa-shopping-cart"></span>
+      </a>
+
+      <a (click)="getActiveOrders()" class="navbar-link">
+        <span class="cl-text-white">Orders</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!--MY FAVORITE STORES / MY LISTINGS-->
+<main>
+  <div class="container above-below-space">
+    <h3 class="favorite-stores">Favorite Stores</h3>
+    <ul class="list-group list-borderless">
+      <li class="list-group-item list-borderless" *ngFor="let store of stores">
+        <!--route to this stores listings page-->
+        <a routerLink="/user/{{userId}}/store/{{storeNum}}">{{store.name}}</a>
+        <!--remove store from your favorites-->
+        <a (click)="removeStore()"><i class="far fa-minus-square float-right part-listings-bottom-margin"></i></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container above-below-space">
+    <div class="row">
+      <h3 class="favorite-stores my-listings-padding">My Listings</h3>
+      <a (click)="addNewListing()" class="cl-text-white">
+        <span class="listing-plus-padding cl-text-white fas fa-plus"></span>
+      </a>
+    </div>
+      <ul class="list-group list-borderless">
+        <li class="list-group-item list-borderless" *ngFor="let part of listings">
+          <!--View your own part listing-->
+          <a routerLink="/user/{{userId}}/part/{{part._id}}/listing">{{part.name}}</a>
+          <!--remove your listing-->
+          <a routerLink="/user/{{userId}}/part/{{part._id}}"><i class="fas fa-cog fontawsome_icon float-right part-listings-bottom-margin"></i></a>
+        </li>
+      </ul>
+  </div>
+</main>
+
+<!--NAVBAR: profile-->
+<!--TODO: maybe make a function to route back to the users profile page-->
+<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" [routerLink]="['../../' + userId]">
+    </a>
+  </div>
+</nav>
+
+</body>
+</html>

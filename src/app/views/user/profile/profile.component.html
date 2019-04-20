@@ -1,0 +1,68 @@
+
+<!--Top navbar with "profile"-->
+<nav>
+  <div class="container-fluid text-center">
+    <h3 class="pageName">
+      Profile
+    </h3>
+  </div>
+</nav>
+
+
+<!--Body-->
+
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        id="username"
+        ngModel
+        [ngModel]="user.username"
+        #username="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        id="email"
+        ngModel
+        [ngModel]="user.email">
+    </div>
+    <div class="form-group">
+      <label for="first name">First name</label>
+      <input
+        name="firstName"
+        type="text"
+        class="form-control"
+        id="first name"
+        ngModel
+        [ngModel]="user.firstName"
+        #firstName="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="last name">Last name</label>
+      <input
+        name="lastName"
+        type="text"
+        class="form-control"
+        id="last name"
+        ngModel
+        [ngModel]="user.lastName"
+        #lastName="ngModel">
+    </div>
+  </form>
+
+  <!--BUTTONS: save/saveAndGarage/logout-->
+  <a class="btn btn-secondary btn-block"
+     (click)="saveUserInfo()">Save</a>
+  <a class="btn btn-primary btn-block"
+     (click)="saveInfoAndGetGarageInfo()">My Garage</a>
+  <a class="btn btn-danger btn-block"
+     (click)="logout()">Logout</a>
+</div>

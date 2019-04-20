@@ -1,0 +1,133 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: #d7dbe0;
+}
+
+.centerBlock {
+  display: table;
+  margin: auto;
+}
+
+.jumboHeaderImg{
+  /*margin-top: -50px;*/
+  /*margin-bottom: 100px;*/
+  background-image: url("../src/assets/htmlImages/samuel-zeller-356376-unsplash.jpg");
+  background-size: cover;
+  color: white;
+}
+
+.homePageColor{
+  color: slategrey;
+}
+
+.signInTopPadding{
+  margin-top: 30px;
+}
+
+
+.pageName {
+  color: steelblue;
+  font-weight: bold;
+}
+
+.navText {
+  color: white;
+}
+
+.cl-grey-navbar {
+  background-color: slategrey;
+}
+
+.cl-text-white {
+  color: white;
+}
+
+
+.span4 img {
+  margin-right: 10px;
+}
+
+.imageSize {
+  width: 500px;height: 600px;
+}
+
+
+.span4 img {
+  margin-right: 10px;
+}
+.span4 .img-left {
+  float: left;
+}
+.span4 .img-right {
+  float: right;
+}
+
+
+.cl-header-padding{
+  padding-left: 5%;
+}
+
+.cl-icon-padding {
+  /*padding-left: 10px;*/
+  padding-right: 5px;
+}
+
+.cl-list-item-borderless {
+  border-top: 0 none;
+  border-bottom: 0 none;
+  border-left: 0 none;
+  border-right: 0 none;
+}
+
+.cl-listing-color {
+  color: #4a5763;
+}
+
+p.part-listings-bottom-margin {
+  margin-bottom: 0px;
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform:  translate(-50%);
+  font-weight: bold;
+}
+
+div.part-img {
+  /*float: left;*/
+  /*width: 120px;*/
+  /*margin: 0 0 15px 20px;*/
+  /*padding: 15px;*/
+  /*border: 1px solid black;*/
+  text-align: center;
+}
+
+a.save-btn-color {
+  background-color: slategrey;
+  color: white;
+}
+
+h3.favorite-stores {
+  color: slategrey;
+}
+
+a.cl-cart-padding {
+  padding-right: 10px;
+}
+
+h3.my-listings-padding {
+  padding-left: 15px;
+}
+
+span.listing-plus-padding {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+
+
+
