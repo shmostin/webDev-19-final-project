@@ -1,17 +1,22 @@
 
 module.exports = function(app) {
 
+  //PASSPORT
+  var passport = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
+  var bcrypt = require('bcrypt-nodejs');
 
-const userModel = require('../model/user/user.model.server');
+  const userModel = require('../model/user/user.model.server');
 
 
   //restful api
 
   app.post('/api/login', passport.authenticate('local'), login);
-  app.post("/api/user", createUser);
-  app.get("/api/user/:uid", findUserById);
-  app.put("/api/user/:uid", updateUserById);
+  app.post('/api/user', createUser);
+  app.get('/api/user/:uid', findUserById);
+  app.put('/api/user/:uid', updateUserById);
   app.post('/api/register', register);
+  app.get('/api/loggedIn', loggedIn);
   app.post('/api/logout', logout);
   app.get('/api/user/:uid/getParts', findAllPartsInCart);
   app.post('/api/user/:uid/orderParts', orderThisPart);
@@ -22,7 +27,45 @@ const userModel = require('../model/user/user.model.server');
   app.get('/api/listings/:uid', findAllListingsForUser)
 
 
+  passport.serializeUser(serializeUser);
 
+  function serializeUser(user, done) {
+    return done(null, user);
+  }
+
+  passport.deserializeUser(deserializeUser);
+
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function (user) {
+          done(null, user);
+        },
+        function (err) {
+          done(err, null);
+        });
+  }
+
+  //IMPLEMENT LOCAL STRATEGY
+  passport.use(new LocalStrategy(localStrategy));
+
+  function localStrategy(username, password, done) {
+    console.log('CALLING LOCAL STRATEGY FOR LOGIN');
+    userModel.findUserByUserName(username).then(
+      function (user) {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          console.log('password valid!');
+          return done(null, user);
+        } else {
+          console.log('password failed.');
+          return done(null, false);
+        }
+      }, function (err){
+        console.log('err is ' + err);
+        return done(err);
+      });
+  }
 
   function login(req, res) {
     console.log('server side login called');
@@ -30,7 +73,10 @@ const userModel = require('../model/user/user.model.server');
     res.json(user);
   }
 
-
+  function loggedIn(req, res) {
+    console.log('server side loggedIn called');
+    res.send(req.isAuthenticated() ? req.user : '0');
+  }
 
   function logout(req, res) {
     console.log('Server side logout() called');

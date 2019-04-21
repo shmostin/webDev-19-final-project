@@ -15,10 +15,13 @@ userModel.findAllOrdersForUser = findAllOrdersForUser;
 userModel.removeOrder = removeOrder;
 userModel.findAllFaveStoresForUser = findAllFaveStoresForUser;
 userModel.findAllListingsForUser = findAllListingsForUser;
+userModel.findUserByUserName = findUserByUserName;
 
 module.exports = userModel;
 
-
+function findUserByUserName(userName) {
+  return userModel.findOne({username:userName});
+}
 
 function createUser(user) {
   console.log('creating user from the model');

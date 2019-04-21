@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
-// const passport = require('passport');
+const passport = require('passport');
 const secret = !!process.env.SESSION_SECRET ? process.env.SESSION_SECRET : 'local_secret';
 const cookieParser = require('cookie-parser');
 const session      = require('express-session');
@@ -19,8 +19,8 @@ app.use(cookieParser());
 app.use(session({ secret: secret }));
 
 //PASSPORT
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 

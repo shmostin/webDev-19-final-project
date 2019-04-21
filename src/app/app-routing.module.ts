@@ -11,12 +11,13 @@ import {MyCartComponent} from "./views/garage/my-cart/my-cart.component";
 import {StoreInstanceComponent} from "./views/store/store-instance/store-instance.component";
 import {PartComponent} from "./views/store/part/part.component";
 import {EditPartsComponent} from "./views/store/edit-parts/edit-parts.component";
+import {AuthGuard} from "./services/auth-gaurd.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
+  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
 
   {path: 'user/:uid/my-garage', component: MyGarageComponent},
   {path: 'user/:uid/my-garage/orders', component: MyOrdersComponent},

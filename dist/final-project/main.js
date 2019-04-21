@@ -46,6 +46,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_store_store_instance_store_instance_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/store/store-instance/store-instance.component */ "./src/app/views/store/store-instance/store-instance.component.ts");
 /* harmony import */ var _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/store/part/part.component */ "./src/app/views/store/part/part.component.ts");
 /* harmony import */ var _views_store_edit_parts_edit_parts_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/store/edit-parts/edit-parts.component */ "./src/app/views/store/edit-parts/edit-parts.component.ts");
+/* harmony import */ var _services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/auth-gaurd.service */ "./src/app/services/auth-gaurd.service.ts");
+
 
 
 
@@ -63,7 +65,7 @@ var appRoutes = [
     { path: '', component: _views_user_home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"] },
     { path: 'login', component: _views_user_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
     { path: 'register', component: _views_user_register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
-    { path: 'user/:uid', component: _views_user_profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"] },
+    { path: 'user/:uid', component: _views_user_profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"], canActivate: [_services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_13__["AuthGuard"]] },
     { path: 'user/:uid/my-garage', component: _views_garage_my_garage_my_garage_component__WEBPACK_IMPORTED_MODULE_7__["MyGarageComponent"] },
     { path: 'user/:uid/my-garage/orders', component: _views_garage_my_orders_my_orders_component__WEBPACK_IMPORTED_MODULE_8__["MyOrdersComponent"] },
     { path: 'user/:uid/my-garage/cart', component: _views_garage_my_cart_my_cart_component__WEBPACK_IMPORTED_MODULE_9__["MyCartComponent"] },
@@ -276,6 +278,43 @@ var User = /** @class */ (function () {
 
 //possibly add store id to this users model???
 //possibly add a cart and orders as well????
+
+
+/***/ }),
+
+/***/ "./src/app/services/auth-gaurd.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/services/auth-gaurd.service.ts ***!
+  \************************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _user_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user.service.client */ "./src/app/services/user.service.client.ts");
+
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(userService, router) {
+        this.userService = userService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function () {
+        return this.userService.loggedIn();
+    };
+    AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_user_service_client__WEBPACK_IMPORTED_MODULE_3__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AuthGuard);
+    return AuthGuard;
+}());
+
 
 
 /***/ }),
