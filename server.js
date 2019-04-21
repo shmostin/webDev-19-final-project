@@ -57,7 +57,7 @@ var localConnectionString = 'mongodb://localhost:27017/webdev';
 var connectionString = 'mongodb://austin:austin1234@ds145356.mlab.com:45356/heroku_slkg0vl4';
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-const client = mongoose.connect( localConnectionString, { useNewUrlParser: true });
+const client = mongoose.connect( connectionString, { useNewUrlParser: true });
 
 //Get the default connection
 var db = mongoose.connection;
