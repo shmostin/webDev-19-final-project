@@ -1,0 +1,31 @@
+
+<nav class="navbar cl-blue-navbar fixed-top">
+  <div class="container-fluid">
+    <a (click)="backOnePage()" class="navbar-link ">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+
+    <span class="cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding">
+      All Stores
+    </span>
+  </div>
+</nav>
+
+<main>
+  <div class="container above-below-space">
+    <ul class="list-group list-borderless">
+      <li class="list-group-item list-borderless" *ngFor="let store of stores">
+        <a routerLink="/user/{{userId}}/store/{{store._id}}">{{store.name}}</a>
+      </li>
+    </ul>
+  </div>
+</main>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fluid">
+    <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" [routerLink]="['../../' + userId]">
+    </a>
+  </div>
+</nav>
+
+

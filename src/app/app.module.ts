@@ -26,6 +26,7 @@ import {StoreServiceClient} from "./services/store.service.client";
 import {PartServiceClient} from "./services/part.service.client";
 import {FormsModule} from "@angular/forms";
 import { NewPartComponent } from './views/store/new-part/new-part.component';
+import { AllStoresComponent } from './views/store/all-stores/all-stores.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { NewPartComponent } from './views/store/new-part/new-part.component';
     StoreInstanceComponent,
     PartComponent,
     EditPartsComponent,
-    NewPartComponent
+    NewPartComponent,
+    AllStoresComponent
   ],
   imports: [
     BrowserModule,

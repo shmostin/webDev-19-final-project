@@ -13,6 +13,7 @@ import {PartComponent} from "./views/store/part/part.component";
 import {EditPartsComponent} from "./views/store/edit-parts/edit-parts.component";
 import {AuthGuard} from "./services/auth-gaurd.service";
 import {NewPartComponent} from "./views/store/new-part/new-part.component";
+import {AllStoresComponent} from "./views/store/all-stores/all-stores.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'user/:uid/my-garage/orders', component: MyOrdersComponent},
   {path: 'user/:uid/my-garage/cart', component: MyCartComponent},
 
+  {path: 'user/:uid/all-stores', component: AllStoresComponent},
   {path: 'user/:uid/store/:storeid', component: StoreInstanceComponent},
   {path: 'user/:uid/store/:storeid/part/:partid/listing', component: PartComponent},
   {path: 'user/:uid/store/:storeid/part/new', component: NewPartComponent},

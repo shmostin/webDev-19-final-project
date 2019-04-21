@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service.client";
 import {Part} from "../../../models/part.model.client";
 import {Store} from "../../../models/store.model.client";
+import {StoreServiceClient} from "../../../services/store.service.client";
 
 @Component({
   selector: 'app-my-garage',
@@ -32,6 +33,7 @@ export class MyGarageComponent implements OnInit {
   //fins all the favorite stores for a user
   constructor(private partService: PartServiceClient,
               private userService: UserService,
+              private storeService: StoreServiceClient,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
@@ -85,5 +87,9 @@ export class MyGarageComponent implements OnInit {
 
   addNewListing() {
     this.router.navigate(['/user', this.userId, 'store', this.storeId, 'part/new']);
+  }
+
+  toAllStores() {
+    this.router.navigate(['/user', this.userId, 'all-stores']);
   }
 }

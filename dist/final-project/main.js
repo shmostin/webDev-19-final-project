@@ -48,6 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_store_edit_parts_edit_parts_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/store/edit-parts/edit-parts.component */ "./src/app/views/store/edit-parts/edit-parts.component.ts");
 /* harmony import */ var _services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/auth-gaurd.service */ "./src/app/services/auth-gaurd.service.ts");
 /* harmony import */ var _views_store_new_part_new_part_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/store/new-part/new-part.component */ "./src/app/views/store/new-part/new-part.component.ts");
+/* harmony import */ var _views_store_all_stores_all_stores_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/store/all-stores/all-stores.component */ "./src/app/views/store/all-stores/all-stores.component.ts");
+
 
 
 
@@ -71,6 +73,7 @@ var appRoutes = [
     { path: 'user/:uid/store/:storeid/my-garage', component: _views_garage_my_garage_my_garage_component__WEBPACK_IMPORTED_MODULE_7__["MyGarageComponent"] },
     { path: 'user/:uid/my-garage/orders', component: _views_garage_my_orders_my_orders_component__WEBPACK_IMPORTED_MODULE_8__["MyOrdersComponent"] },
     { path: 'user/:uid/my-garage/cart', component: _views_garage_my_cart_my_cart_component__WEBPACK_IMPORTED_MODULE_9__["MyCartComponent"] },
+    { path: 'user/:uid/all-stores', component: _views_store_all_stores_all_stores_component__WEBPACK_IMPORTED_MODULE_15__["AllStoresComponent"] },
     { path: 'user/:uid/store/:storeid', component: _views_store_store_instance_store_instance_component__WEBPACK_IMPORTED_MODULE_10__["StoreInstanceComponent"] },
     { path: 'user/:uid/store/:storeid/part/:partid/listing', component: _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_11__["PartComponent"] },
     { path: 'user/:uid/store/:storeid/part/new', component: _views_store_new_part_new_part_component__WEBPACK_IMPORTED_MODULE_14__["NewPartComponent"] },
@@ -180,6 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_part_service_client__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./services/part.service.client */ "./src/app/services/part.service.client.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _views_store_new_part_new_part_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./views/store/new-part/new-part.component */ "./src/app/views/store/new-part/new-part.component.ts");
+/* harmony import */ var _views_store_all_stores_all_stores_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./views/store/all-stores/all-stores.component */ "./src/app/views/store/all-stores/all-stores.component.ts");
 
 
 
@@ -205,6 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -222,7 +227,8 @@ var AppModule = /** @class */ (function () {
                 _views_store_store_instance_store_instance_component__WEBPACK_IMPORTED_MODULE_12__["StoreInstanceComponent"],
                 _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_13__["PartComponent"],
                 _views_store_edit_parts_edit_parts_component__WEBPACK_IMPORTED_MODULE_14__["EditPartsComponent"],
-                _views_store_new_part_new_part_component__WEBPACK_IMPORTED_MODULE_23__["NewPartComponent"]
+                _views_store_new_part_new_part_component__WEBPACK_IMPORTED_MODULE_23__["NewPartComponent"],
+                _views_store_all_stores_all_stores_component__WEBPACK_IMPORTED_MODULE_24__["AllStoresComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -503,6 +509,10 @@ var StoreServiceClient = /** @class */ (function () {
         this.http = http;
         this.baseUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl;
     }
+    StoreServiceClient.prototype.getAllStores = function () {
+        console.log('getting all stores');
+        return this.http.get(this.baseUrl + '/api/all-stores');
+    };
     StoreServiceClient.prototype.createStore = function (userId, store) {
         console.log('Creating store one client side');
         return this.http.post(this.baseUrl + '/api/user/' + userId + '/store', store);
@@ -852,6 +862,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_part_service_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/part.service.client */ "./src/app/services/part.service.client.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/user.service.client */ "./src/app/services/user.service.client.ts");
+/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/store.service.client */ "./src/app/services/store.service.client.ts");
+
 
 
 
@@ -860,9 +872,10 @@ __webpack_require__.r(__webpack_exports__);
 var MyGarageComponent = /** @class */ (function () {
     //Find all the parts for a user
     //fins all the favorite stores for a user
-    function MyGarageComponent(partService, userService, activatedRoute, router) {
+    function MyGarageComponent(partService, userService, storeService, activatedRoute, router) {
         this.partService = partService;
         this.userService = userService;
+        this.storeService = storeService;
         this.activatedRoute = activatedRoute;
         this.router = router;
     }
@@ -907,6 +920,9 @@ var MyGarageComponent = /** @class */ (function () {
     MyGarageComponent.prototype.addNewListing = function () {
         this.router.navigate(['/user', this.userId, 'store', this.storeId, 'part/new']);
     };
+    MyGarageComponent.prototype.toAllStores = function () {
+        this.router.navigate(['/user', this.userId, 'all-stores']);
+    };
     MyGarageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-my-garage',
@@ -915,6 +931,7 @@ var MyGarageComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_part_service_client__WEBPACK_IMPORTED_MODULE_2__["PartServiceClient"],
             _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            _services_store_service_client__WEBPACK_IMPORTED_MODULE_5__["StoreServiceClient"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], MyGarageComponent);
@@ -1003,6 +1020,80 @@ var MyOrdersComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], MyOrdersComponent);
     return MyOrdersComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/views/store/all-stores/all-stores.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/views/store/all-stores/all-stores.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3ZpZXdzL3N0b3JlL2FsbC1zdG9yZXMvYWxsLXN0b3Jlcy5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/views/store/all-stores/all-stores.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/views/store/all-stores/all-stores.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<nav class=\"navbar cl-blue-navbar fixed-top\">\n  <div class=\"container-fluid\">\n    <a (click)=\"backOnePage()\" class=\"navbar-link \">\n      <span class=\"cl-text-white fas fa-chevron-left\"></span>\n    </a>\n\n    <span class=\"cl-text-white navbar-brand mb-0 h5 mr-auto cl-header-padding\">\n      All Stores\n    </span>\n  </div>\n</nav>\n\n<main>\n  <div class=\"container above-below-space\">\n    <ul class=\"list-group list-borderless\">\n      <li class=\"list-group-item list-borderless\" *ngFor=\"let store of stores\">\n        <a routerLink=\"/user/{{userId}}/store/{{store._id}}\">{{store.name}}</a>\n      </li>\n    </ul>\n  </div>\n</main>\n\n<nav class=\"navbar fixed-bottom cl-blue-navbar\">\n  <div class=\"container-fluid\">\n    <a class=\"align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding\" [routerLink]=\"['../../' + userId]\">\n    </a>\n  </div>\n</nav>\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/views/store/all-stores/all-stores.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/views/store/all-stores/all-stores.component.ts ***!
+  \****************************************************************/
+/*! exports provided: AllStoresComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AllStoresComponent", function() { return AllStoresComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/store.service.client */ "./src/app/services/store.service.client.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var AllStoresComponent = /** @class */ (function () {
+    function AllStoresComponent(storeService, activatedRoute, router) {
+        this.storeService = storeService;
+        this.activatedRoute = activatedRoute;
+        this.router = router;
+    }
+    AllStoresComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+        });
+        this.storeService.getAllStores()
+            .subscribe(function (stores) { return _this.stores = stores; });
+    };
+    AllStoresComponent.prototype.backOnePage = function () {
+        this.router.navigate(['/user', this.userId, 'my-garage']);
+    };
+    AllStoresComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-all-stores',
+            template: __webpack_require__(/*! ./all-stores.component.html */ "./src/app/views/store/all-stores/all-stores.component.html"),
+            styles: [__webpack_require__(/*! ./all-stores.component.css */ "./src/app/views/store/all-stores/all-stores.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_store_service_client__WEBPACK_IMPORTED_MODULE_2__["StoreServiceClient"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], AllStoresComponent);
+    return AllStoresComponent;
 }());
 
 

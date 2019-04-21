@@ -16,6 +16,11 @@ export class StoreServiceClient {
 
   }
 
+  getAllStores() {
+    console.log('getting all stores');
+    return this.http.get<Store[]>(this.baseUrl + '/api/all-stores');
+  }
+
   createStore(userId, store) {
     console.log('Creating store one client side');
     return this.http.post<Store>(this.baseUrl + '/api/user/' + userId + '/store', store);
