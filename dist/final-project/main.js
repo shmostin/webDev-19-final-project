@@ -169,11 +169,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/store/part/part.component */ "./src/app/views/store/part/part.component.ts");
 /* harmony import */ var _views_store_edit_parts_edit_parts_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/store/edit-parts/edit-parts.component */ "./src/app/views/store/edit-parts/edit-parts.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/user.service.client */ "./src/app/services/user.service.client.ts");
-/* harmony import */ var _services_garage_service_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/garage.service.client */ "./src/app/services/garage.service.client.ts");
-/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/store.service.client */ "./src/app/services/store.service.client.ts");
-/* harmony import */ var _services_part_service_client__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/part.service.client */ "./src/app/services/part.service.client.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/auth-gaurd.service */ "./src/app/services/auth-gaurd.service.ts");
+/* harmony import */ var _services_shared_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/shared.service */ "./src/app/services/shared.service.ts");
+/* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/user.service.client */ "./src/app/services/user.service.client.ts");
+/* harmony import */ var _services_garage_service_client__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/garage.service.client */ "./src/app/services/garage.service.client.ts");
+/* harmony import */ var _services_store_service_client__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./services/store.service.client */ "./src/app/services/store.service.client.ts");
+/* harmony import */ var _services_part_service_client__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./services/part.service.client */ "./src/app/services/part.service.client.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
 
 
 
@@ -217,10 +221,10 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_22__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"]
             ],
-            providers: [_services_user_service_client__WEBPACK_IMPORTED_MODULE_16__["UserService"], _services_store_service_client__WEBPACK_IMPORTED_MODULE_18__["StoreServiceClient"], _services_garage_service_client__WEBPACK_IMPORTED_MODULE_17__["GarageServiceClient"], _services_part_service_client__WEBPACK_IMPORTED_MODULE_19__["PartServiceClient"]],
+            providers: [_services_user_service_client__WEBPACK_IMPORTED_MODULE_18__["UserService"], _services_store_service_client__WEBPACK_IMPORTED_MODULE_20__["StoreServiceClient"], _services_garage_service_client__WEBPACK_IMPORTED_MODULE_19__["GarageServiceClient"], _services_part_service_client__WEBPACK_IMPORTED_MODULE_21__["PartServiceClient"], _services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_16__["AuthGuard"], _services_shared_service__WEBPACK_IMPORTED_MODULE_17__["SharedService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
@@ -1321,7 +1325,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n  <div class=\"container\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n\n\n    <div class=\"text-center\">\n      <h1>Login</h1>\n    </div>\n    <!--// TODO: put this back into the form-->\n    <!--#f=\"ngForm\"-->\n\n    <form (ngSubmit)=\"login()\" style=\"background-color: \">\n      <div class=\"form-group\">\n        <input placeholder=\"username\"\n               name=\"username\"\n               type=\"text\"\n               class=\"form-control\"\n               ngModel\n               required/>\n        <!-- TODO: put this back into the form-->\n        <!--#username=\"ngModel\"-->\n\n\n      </div> <!-- form-group// -->\n      <div class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n        Please enter a username\n      </div>\n\n      <div class=\"form-group\">\n        <input placeholder=\"password\"\n               name=\"password\"\n               type=\"password\"\n               class=\"form-control\"\n               ngModel\n               required/>\n\n        <!-- TODO: put this back into the form-->\n        <!--#password=\"ngModel\">-->\n\n\n      </div> <!-- form-group// -->\n\n      <div class=\"form-group\">\n        <button [disabled]=\"!f.valid\"\n                class=\"btn btn-primary btn-block\"\n                type=\"submit\">Login\n        </button>\n      </div>\n      <!--<div class=\"form-group\">-->\n      <!--<a href=\"/facebook/login\" class=\"btn btn-primary btn-block\">-->\n      <!--<span class=\"fa fa-facebook\"></span>-->\n      <!--Facebook-->\n      <!--</a>-->\n      <!--</div>-->\n\n      <div class=\"form-group\">\n        <a class=\"btn btn-success btn-block\" routerLink=\"/register\" role=\"button\">Register</a>\n      </div>\n    </form>\n\n  </div>\n\n"
+module.exports = "\n\n\n  <div class=\"container\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n\n\n    <div class=\"text-center\">\n      <h1>Login</h1>\n    </div>\n    <!--// TODO: put this back into the form-->\n    <!--#f=\"ngForm\"-->\n\n    <form (ngSubmit)=\"login()\" style=\"background-color: \">\n      <div class=\"form-group\">\n        <input placeholder=\"username\"\n               name=\"username\"\n               type=\"text\"\n               class=\"form-control\"\n               ngModel\n               required\n               #username=\"ngModel\"/>\n        <!-- TODO: put this back into the form-->\n        <!--#username=\"ngModel\"-->\n\n\n      </div> <!-- form-group// -->\n      <div class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n        Please enter a username\n      </div>\n\n      <div class=\"form-group\">\n        <input placeholder=\"password\"\n               name=\"password\"\n               type=\"password\"\n               class=\"form-control\"\n               ngModel\n               required\n               #password=\"ngModel/>\n\n        <!-- TODO: put this back into the form-->\n        <!--#password=\"ngModel\">-->\n\n\n      </div> <!-- form-group// -->\n\n      <div class=\"form-group\">\n        <button [disabled]=\"!f.valid\"\n                class=\"btn btn-primary btn-block\"\n                type=\"submit\">Login\n        </button>\n      </div>\n      <!--<div class=\"form-group\">-->\n      <!--<a href=\"/facebook/login\" class=\"btn btn-primary btn-block\">-->\n      <!--<span class=\"fa fa-facebook\"></span>-->\n      <!--Facebook-->\n      <!--</a>-->\n      <!--</div>-->\n\n      <div class=\"form-group\">\n        <a class=\"btn btn-success btn-block\" routerLink=\"/register\" role=\"button\">Register</a>\n      </div>\n    </form>\n\n  </div>\n\n"
 
 /***/ }),
 

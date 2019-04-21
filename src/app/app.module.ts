@@ -14,6 +14,8 @@ import { StoreInstanceComponent } from './views/store/store-instance/store-insta
 import { PartComponent } from './views/store/part/part.component';
 import { EditPartsComponent } from './views/store/edit-parts/edit-parts.component';
 import { HttpClientModule } from '@angular/common/http';
+import {AuthGuard} from './services/auth-gaurd.service';
+import {SharedService} from "./services/shared.service";
 
 
 
@@ -45,7 +47,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, StoreServiceClient, GarageServiceClient, PartServiceClient],
+  providers: [UserService, StoreServiceClient, GarageServiceClient, PartServiceClient, AuthGuard, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
