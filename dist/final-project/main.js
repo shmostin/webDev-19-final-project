@@ -1273,8 +1273,8 @@ var NewPartComponent = /** @class */ (function () {
             _this.storeId = params['storeid'];
         });
     };
-    NewPartComponent.prototype.backOnePage = function (storeId) {
-        this.router.navigate(['/user', this.userId, 'store', storeId, 'my-garage']);
+    NewPartComponent.prototype.backOnePage = function () {
+        this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage']);
     };
     NewPartComponent.prototype.newPart = function () {
         var _this = this;
