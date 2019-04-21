@@ -14,7 +14,7 @@
     <!--// TODO: put this back into the form-->
     <!--#f="ngForm"-->
 
-    <form (ngSubmit)="login()" style="background-color: ">
+    <form (ngSubmit)="login()" #f="ngForm">
       <div class="form-group">
         <input placeholder="username"
                name="username"
@@ -39,7 +39,7 @@
                class="form-control"
                ngModel
                required
-               #password="ngModel/>
+               #password="ngModel"/>
 
         <!-- TODO: put this back into the form-->
         <!--#password="ngModel">-->

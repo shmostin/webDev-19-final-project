@@ -188,4 +188,9 @@ export class UserService {
     console.log('finding all listings for this user: ' + userId);
     return this.http.get<Part[]>(this.baseUrl + '/api/listings/' + userId);
   }
+
+  removeStore(userId, storeId) {
+    console.log('removing store from users favorite stores');
+    return this.http.delete(this.baseUrl + '/api/user/' + userId + 'store/' + storeId);
+  }
 }

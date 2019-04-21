@@ -25,9 +25,9 @@ export class PartServiceClient {
     return this.http.post<Part[]>(this.baseUrl + '/api/user' + userId, partId);
   }
 
-  createPart(storeId: string, part: Part) {
+  createPart(userId: string, storeId: string, part: Part) {
     console.log('calling create part from the client side')
-    return this.http.post<Part>(this.baseUrl + '/api/store/' + storeId, part);
+    return this.http.post<Part>(this.baseUrl + '/api/user/' + userId + '/store/' + storeId, part);
   }
 
   findPartsByStoreId(storeId: string) {

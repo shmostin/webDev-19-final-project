@@ -12,6 +12,7 @@ import {StoreInstanceComponent} from "./views/store/store-instance/store-instanc
 import {PartComponent} from "./views/store/part/part.component";
 import {EditPartsComponent} from "./views/store/edit-parts/edit-parts.component";
 import {AuthGuard} from "./services/auth-gaurd.service";
+import {NewPartComponent} from "./views/store/new-part/new-part.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,12 +20,13 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
 
-  {path: 'user/:uid/my-garage', component: MyGarageComponent},
+  {path: 'user/:uid/store/:storeid/my-garage', component: MyGarageComponent},
   {path: 'user/:uid/my-garage/orders', component: MyOrdersComponent},
   {path: 'user/:uid/my-garage/cart', component: MyCartComponent},
 
   {path: 'user/:uid/store/:storeid', component: StoreInstanceComponent},
   {path: 'user/:uid/store/:storeid/part/:partid/listing', component: PartComponent},
+  {path: 'user/:uid/store/:storeid/part/new', component: NewPartComponent},
   {path: 'user/:uid/store/:storeid/part/:partid/edit', component: EditPartsComponent}
 ];
 

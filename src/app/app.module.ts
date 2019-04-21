@@ -25,6 +25,7 @@ import {GarageServiceClient} from "./services/garage.service.client";
 import {StoreServiceClient} from "./services/store.service.client";
 import {PartServiceClient} from "./services/part.service.client";
 import {FormsModule} from "@angular/forms";
+import { NewPartComponent } from './views/store/new-part/new-part.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {FormsModule} from "@angular/forms";
     MyOrdersComponent,
     StoreInstanceComponent,
     PartComponent,
-    EditPartsComponent
+    EditPartsComponent,
+    NewPartComponent
   ],
   imports: [
     BrowserModule,

@@ -12,11 +12,11 @@
     </span>
 
     <div class="float-right">
-      <a (click)="getCartItems()" class="navbar-link cl-text-white cl-cart-padding">
+      <a (click)="goToCart()" class="navbar-link cl-text-white cl-cart-padding">
         <span class="cl-text-white fas fa-shopping-cart"></span>
       </a>
 
-      <a (click)="getActiveOrders()" class="navbar-link">
+      <a (click)="gotToOrders()" class="navbar-link">
         <span class="cl-text-white">Orders</span>
       </a>
     </div>
@@ -30,9 +30,9 @@
     <ul class="list-group list-borderless">
       <li class="list-group-item list-borderless" *ngFor="let store of stores">
         <!--route to this stores listings page-->
-        <a routerLink="/user/{{userId}}/store/{{storeNum}}">{{store.name}}</a>
+        <a routerLink="/user/{{userId}}/store/{{store._id}}">{{store.name}}</a>
         <!--remove store from your favorites-->
-        <a (click)="removeStore()"><i class="far fa-minus-square float-right part-listings-bottom-margin"></i></a>
+        <a (click)="removeStore(userId, store._id)"><i class="far fa-minus-square float-right part-listings-bottom-margin"></i></a>
       </li>
     </ul>
   </div>

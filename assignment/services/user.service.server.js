@@ -25,7 +25,7 @@ module.exports = function(app) {
   app.delete('/api/user/:uid/order/:partId', removeOrder);
   app.get('/api/stores/:uid', findAllFaveStoresForUser);
   app.get('/api/listings/:uid', findAllListingsForUser)
-
+  app.delete('/api/user/:uid/store/:storeid', removeStore)
 
   passport.serializeUser(serializeUser);
 
@@ -105,6 +105,22 @@ module.exports = function(app) {
           }
         });
   }
+
+  function removeStore(req, res) {
+    var userId = req.params['uid'];
+    var storeId= req.params['storeid'];
+
+    userModel.removeStore(userId, storeId)
+      .exec(
+        function (err, store) {
+          if (err) {
+            return res.status(400).send(err);
+          } else {
+            return res.status(200).send(store);
+          }
+        });
+  }
+
 
   function createUser(req, res){
     var newuser = req.body;

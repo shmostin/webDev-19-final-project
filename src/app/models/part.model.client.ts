@@ -6,10 +6,9 @@ export class Part {
   price: number;
 
 
-  constructor(name, partId, description, price) {
+  constructor(name, description, price) {
     this.name = name;
     this.description = description;
-    this.partId = partId;
     this.price = price;
   }
 }

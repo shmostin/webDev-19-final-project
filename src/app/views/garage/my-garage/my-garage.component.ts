@@ -25,6 +25,7 @@ export class MyGarageComponent implements OnInit {
   userId: String;
   stores: Store[];
   listings: Part[];
+  storeId: String;
 
 
   //Find all the parts for a user
@@ -38,6 +39,7 @@ export class MyGarageComponent implements OnInit {
     console.log('loading the favorite stores list');
     this.activatedRoute.params.subscribe((params: any) => {
       this.userId = params['uid'];
+      this.storeId = params['storeid'];
       console.log('listing favorite stores for uid: ' + this.userId);
     });
     this.userService.findAllFavStoresForUser(this.userId)
@@ -64,5 +66,24 @@ export class MyGarageComponent implements OnInit {
   //TODO: somehow get the store id and the partId from the garage page???
   goToEditPartListing(partId, storeId) {
     this.router.navigate(['/user', this.userId, 'store', storeId, 'part', partId, 'edit'])
+  }
+
+  goToCart() {
+    this.router.navigate(['/user', this.userId, 'my-garage/cart'])
+  }
+
+  gotToOrders() {
+    this.router.navigate(['/user', this.userId, 'my-garage/orders'])
+  }
+
+  removeStore(userId, storeId) {
+    this.userService.removeStore(userId, storeId)
+      .subscribe(
+        () => this.backOnePage()
+      )
+  }
+
+  addNewListing() {
+    this.router.navigate(['/user', this.userId, 'store', this.storeId, 'part/new']);
   }
 }

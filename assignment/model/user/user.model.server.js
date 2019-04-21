@@ -16,8 +16,18 @@ userModel.removeOrder = removeOrder;
 userModel.findAllFaveStoresForUser = findAllFaveStoresForUser;
 userModel.findAllListingsForUser = findAllListingsForUser;
 userModel.findUserByUserName = findUserByUserName;
+userModel.removeStore = removeStore;
 
 module.exports = userModel;
+
+function removeStore(userId, storeId) {
+  userModel.findOne({_id: userId})
+    .then(
+      function (foundUser) {
+        foundUser.favStores.pull({_id: storeId});
+        return foundUser.save();
+      });
+}
 
 function findUserByUserName(userName) {
   return userModel.findOne({username:userName});

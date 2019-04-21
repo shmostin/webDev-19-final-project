@@ -1,0 +1,60 @@
+
+<nav class="navbar cl-blue-navbar fixed-top">
+  <div class="container-fluid">
+    <a routerLink="../" class="navbar-link">
+      <span class="cl-text-white fas fa-chevron-left"></span>
+    </a>
+    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+      New Page
+    </a>
+    <a (click)="newPart()" class="navbar-link cl-text-white">
+      <span class="cl-text-white fas fa-check fontawesome_icon cl-icon-padding"></span>
+    </a>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="partname" class="font-weight-bold">Name</label>
+      <input id="partname"
+             name="partName"
+             type="text"
+             class="form-control"
+             placeholder="Part Name"
+             ngModel
+             required
+             #partName="ngModel">
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+      <label for="partdescription" class="font-weight-bold">Description</label>
+      <input id="partdescription"
+             name="partDescription"
+             type="text"
+             class="form-control"
+             placeholder="Part Description"
+             ngModel
+             #partDescription="ngModel">
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+      <label for="partprice" class="font-weight-bold">Price</label>
+      <input id="partprice"
+             name="partPrice"
+             type="text"
+             class="form-control"
+             placeholder="Part Price"
+             ngModel
+             #partPrice="ngModel">
+    </div> <!-- form-group// -->
+  </form>
+</div>
+
+
+    <nav class="navbar fixed-bottom cl-blue-navbar">
+      <div class="container-fluid">
+        <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" [routerLink]="['/user/' + uid]">
+        </a>
+      </div>
+    </nav>

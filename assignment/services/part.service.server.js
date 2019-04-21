@@ -3,11 +3,28 @@ module.exports = function(app) {
   const partModel = require('../model/part/part.model.server');
 
   app.post('/api/user/:uid', addPartToCart);
+  app.post('/api/user/:uid/store/:storeId', createPart);
   app.get('/api/store/:storeid/part/:partid/listing', findPartById);
   app.put('/api/store/:storeid/part/:partid/edit', updatePart);
   app.delete('/api/part/:partid', deletePart);
 
 
+  function createPart(req, res) {
+    var storeId = req.params['storeid'];
+    var userId = req.params['uid'];
+    var newPart = req.body;
+
+    partModel.createPart(userId, storeId, newPart)
+      .then(
+        function (part) {
+          res.status(200).send(part);
+          return part;
+        }, function (err) {
+          console.log('ERROR ' + err);
+          res.sendStatus(400);
+          return err;
+        });
+  }
 
   function deletePart(req, res) {
     var partId = req.params['partid'];

@@ -25,7 +25,7 @@ export class EditPartsComponent implements OnInit {
   constructor(private partService: PartServiceClient,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
-    this.oldPart = new Part('', '', '', '');
+    this.oldPart = new Part('', '', '');
   }
 
   ngOnInit() {
@@ -45,7 +45,6 @@ export class EditPartsComponent implements OnInit {
   updatePart() {
     const newPage = new Part(
       this.partsForm.value.partName,
-      this.partId,
       this.partsForm.value.partDescription,
       this.partsForm.value.partPrice
     );
