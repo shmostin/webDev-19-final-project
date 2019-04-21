@@ -1,4 +1,3 @@
-import {Store} from "../../../src/app/models/store.model.client";
 
 var mongoose = require('mongoose');
 

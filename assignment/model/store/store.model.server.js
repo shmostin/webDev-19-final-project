@@ -6,7 +6,7 @@ var storeModel = mongoose.model('Store', storeSchema);
 storeModel.findAllPartsByStoreId = findAllPartsByStoreId;
 storeModel.getAllStores = getAllStores;
 
-module.exports.storeModel;
+module.exports = storeModel;
 
 function getAllStores() {
   console.log('getting all stores from the store model');

@@ -1,18 +1,19 @@
-import * as userModel from "../user/user.model.server";
+// import * as userModel from "../user/user.model.server";
+
 
 var mongoose = require('mongoose');
 var partSchema = require('./part.schema.server');
 
 var partModel = mongoose.model('Part', partSchema);
 
-partModel.addPartToCart = addPartToCart;
-partModel.findPartById = findPartById;
-partModel.updatePart = updatePart;
-partModel.deletePart = deletePart;
+// partModel.addPartToCart = addPartToCart;
+// partModel.findPartById = findPartById;
+// partModel.updatePart = updatePart;
+// partModel.deletePart = deletePart;
 partModel.createPart = createPart;
 
 
-module.exports.partModel;
+module.exports = partModel;
 
 
 function createPart(userId, storeId, part) {
