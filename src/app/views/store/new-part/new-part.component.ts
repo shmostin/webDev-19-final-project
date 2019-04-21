@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class NewPartComponent implements OnInit {
   @ViewChild('f') pageForm: NgForm;
 
-  uid: string;
+  userId: string;
   partId: string;
   storeId: string;
   name: string;
@@ -27,21 +27,22 @@ export class NewPartComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.uid = params['uid'];
+        this.userId = params['uid'];
+        this.storeId = params['storeid'];
       });
   }
 
   backOnePage(storeId) {
-    this.router.navigate(['/user', this.uid, 'store', storeId, 'my-garage'])
+    this.router.navigate(['/user', this.userId, 'store', storeId, 'my-garage'])
   }
 
-  newPart(userId, storeId) {
+  newPart() {
     const name = this.pageForm.value.partName;
     const description = this.pageForm.value.partDescription;
     const price = this.pageForm.value.partPrice;
     const part = new Part(name, description, price);
 
-    this.partService.createPart(userId, storeId, part)
+    this.partService.createPart(this.userId, this.storeId, part)
       .subscribe(
         part => this.router.navigate(['../'])
       )

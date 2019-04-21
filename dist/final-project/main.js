@@ -1269,19 +1269,20 @@ var NewPartComponent = /** @class */ (function () {
     NewPartComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
+            _this.userId = params['uid'];
+            _this.storeId = params['storeid'];
         });
     };
     NewPartComponent.prototype.backOnePage = function (storeId) {
-        this.router.navigate(['/user', this.uid, 'store', storeId, 'my-garage']);
+        this.router.navigate(['/user', this.userId, 'store', storeId, 'my-garage']);
     };
-    NewPartComponent.prototype.newPart = function (userId, storeId) {
+    NewPartComponent.prototype.newPart = function () {
         var _this = this;
         var name = this.pageForm.value.partName;
         var description = this.pageForm.value.partDescription;
         var price = this.pageForm.value.partPrice;
         var part = new _models_part_model_client__WEBPACK_IMPORTED_MODULE_3__["Part"](name, description, price);
-        this.partService.createPart(userId, storeId, part)
+        this.partService.createPart(this.userId, this.storeId, part)
             .subscribe(function (part) { return _this.router.navigate(['../']); });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1354,15 +1355,22 @@ var PartComponent = /** @class */ (function () {
     PartComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
-            _this.uid = params['uid'];
-            _this.sid = params['storeid'];
-            _this.pid = params['partid'];
+            _this.userId = params['uid'];
+            _this.storeId = params['storeid'];
+            _this.partId = params['partid'];
+        });
+        this.partService.findPartById(this.partId, this.storeId)
+            .subscribe(function (data) {
+            _this.part = data;
         });
     };
     PartComponent.prototype.addToCart = function () {
-        console.log('adding part: ' + this.pid + ' to user: ' + this.uid + " cart");
+        console.log('adding part: ' + this.partId + ' to user: ' + this.userId + " cart");
         //need the part to add. How do i get the part???
-        this.partService.addPartToCart(this.uid, this.pid);
+        this.partService.addPartToCart(this.userId, this.partId);
+    };
+    PartComponent.prototype.backOnePage = function () {
+        this.router.navigate(['/user', this.userId, 'store', this.storeId]);
     };
     PartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
