@@ -113,6 +113,7 @@ export class UserService {
    * @param user the user information we want to use as the update.
    */
   updateUserById(userId, user) {
+    console.log('calling updateuserbyId from client side');
     return this.http.put<User>(this.baseUrl + this.APIUrl + userId, user);
   }
 

@@ -13,8 +13,8 @@ module.exports = function(app) {
 
   app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/user', createUser);
-  app.get('/api/user/:uid', findUserById);
   app.put('/api/user/:uid', updateUserById);
+  app.get('/api/user/:uid', findUserById);
   app.post('/api/register', register);
   app.get('/api/loggedIn', loggedIn);
   app.post('/api/logout', logout);
@@ -150,13 +150,14 @@ module.exports = function(app) {
   }
 
   function updateUserById(req, res){
+    console.log('updateUser by id from server side');
     var userId = req.params['uid'];
     var user = req.body;
 
     console.log(req.body);
     console.log("update user: " + userId + " " + user.firstName + " " + user.lastName);
 
-    userModel.updateUser(userId, user)
+    userModel.updateUserById(userId, user)
       .exec(
         function (err, user) {
           if (err) {

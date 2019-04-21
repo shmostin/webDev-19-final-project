@@ -45,7 +45,7 @@ function findUserById(userId) {
 
 function updateUserById(userId, user) {
   console.log('updating user from the model');
-  return userModel.findByIdAndUpdate(userId, user);
+  return userModel.findOneAndUpdate(userId, user);
 }
 
 
