@@ -48,4 +48,6 @@ export class NewPartComponent implements OnInit {
       )
   }
 
+
+
 }

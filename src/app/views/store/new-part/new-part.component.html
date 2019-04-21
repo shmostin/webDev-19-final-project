@@ -54,7 +54,7 @@
 
     <nav class="navbar fixed-bottom cl-blue-navbar">
       <div class="container-fluid">
-        <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" [routerLink]="['/user/' + uid]">
+        <a class="align-right fas fa-user fa-inverse fontawesome_icon cl-icon-padding" (click)="backOnePage()" ">
         </a>
       </div>
     </nav>
