@@ -18,6 +18,7 @@ export class MyCartComponent implements OnInit {
    */
 
   userId: string;
+  storeId: string;
   partId: string;
   parts: Part[];
 
@@ -29,6 +30,7 @@ export class MyCartComponent implements OnInit {
     console.log('loading the parts for this users cart');
     this.activatedRoute.params.subscribe( (params: any) => {
       this.userId = params['uid'];
+      this.storeId = params['storeid'];
       console.log('at my-cart, uid: ' + this.userId);
     });
     this.userService.findAllPartsInCart(this.userId)
@@ -42,7 +44,7 @@ export class MyCartComponent implements OnInit {
 
   //back to my-garage
   backOnePage() {
-    this.router.navigate(['/user', this.userId, 'my-garage']);
+    this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage']);
   }
 
   orderThisPart() {

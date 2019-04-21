@@ -22,8 +22,8 @@ const appRoutes: Routes = [
   {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
 
   {path: 'user/:uid/store/:storeid/my-garage', component: MyGarageComponent},
-  {path: 'user/:uid/my-garage/orders', component: MyOrdersComponent},
-  {path: 'user/:uid/my-garage/cart', component: MyCartComponent},
+  {path: 'user/:uid/store/:storeid/my-garage/orders', component: MyOrdersComponent},
+  {path: 'user/:uid/store/:storeid/my-garage/cart', component: MyCartComponent},
 
   {path: 'user/:uid/all-stores', component: AllStoresComponent},
   {path: 'user/:uid/store/:storeid', component: StoreInstanceComponent},

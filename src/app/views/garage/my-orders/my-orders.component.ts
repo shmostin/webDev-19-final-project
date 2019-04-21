@@ -17,6 +17,7 @@ export class MyOrdersComponent implements OnInit {
    */
 
   userId: string;
+  storeId: string;
   partId: string;
   orders: Part[];
 
@@ -30,6 +31,7 @@ export class MyOrdersComponent implements OnInit {
     console.log('loading the parts for this users orders list');
     this.activatedRoute.params.subscribe( (params: any) => {
       this.userId = params['uid'];
+      this.storeId = params['storeid'];
       console.log('at my-cart, uid: ' + this.userId);
     });
     this.userService.findAllOrdersForUser(this.userId)
@@ -47,6 +49,10 @@ export class MyOrdersComponent implements OnInit {
       .subscribe(
         () => this.router.navigate(['/user', this.userId, 'my-garage', 'orders'])
       )
+  }
+
+  backOnePage() {
+    this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage'])
   }
 
 }

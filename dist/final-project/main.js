@@ -71,8 +71,8 @@ var appRoutes = [
     { path: 'register', component: _views_user_register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
     { path: 'user/:uid', component: _views_user_profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"], canActivate: [_services_auth_gaurd_service__WEBPACK_IMPORTED_MODULE_13__["AuthGuard"]] },
     { path: 'user/:uid/store/:storeid/my-garage', component: _views_garage_my_garage_my_garage_component__WEBPACK_IMPORTED_MODULE_7__["MyGarageComponent"] },
-    { path: 'user/:uid/my-garage/orders', component: _views_garage_my_orders_my_orders_component__WEBPACK_IMPORTED_MODULE_8__["MyOrdersComponent"] },
-    { path: 'user/:uid/my-garage/cart', component: _views_garage_my_cart_my_cart_component__WEBPACK_IMPORTED_MODULE_9__["MyCartComponent"] },
+    { path: 'user/:uid/store/:storeid/my-garage/orders', component: _views_garage_my_orders_my_orders_component__WEBPACK_IMPORTED_MODULE_8__["MyOrdersComponent"] },
+    { path: 'user/:uid/store/:storeid/my-garage/cart', component: _views_garage_my_cart_my_cart_component__WEBPACK_IMPORTED_MODULE_9__["MyCartComponent"] },
     { path: 'user/:uid/all-stores', component: _views_store_all_stores_all_stores_component__WEBPACK_IMPORTED_MODULE_15__["AllStoresComponent"] },
     { path: 'user/:uid/store/:storeid', component: _views_store_store_instance_store_instance_component__WEBPACK_IMPORTED_MODULE_10__["StoreInstanceComponent"] },
     { path: 'user/:uid/store/:storeid/part/:partid/listing', component: _views_store_part_part_component__WEBPACK_IMPORTED_MODULE_11__["PartComponent"] },
@@ -784,6 +784,7 @@ var MyCartComponent = /** @class */ (function () {
         console.log('loading the parts for this users cart');
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
+            _this.storeId = params['storeid'];
             console.log('at my-cart, uid: ' + _this.userId);
         });
         this.userService.findAllPartsInCart(this.userId)
@@ -795,7 +796,7 @@ var MyCartComponent = /** @class */ (function () {
     };
     //back to my-garage
     MyCartComponent.prototype.backOnePage = function () {
-        this.router.navigate(['/user', this.userId, 'my-garage']);
+        this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage']);
     };
     MyCartComponent.prototype.orderThisPart = function () {
         var _this = this;
@@ -994,6 +995,7 @@ var MyOrdersComponent = /** @class */ (function () {
         console.log('loading the parts for this users orders list');
         this.activatedRoute.params.subscribe(function (params) {
             _this.userId = params['uid'];
+            _this.storeId = params['storeid'];
             console.log('at my-cart, uid: ' + _this.userId);
         });
         this.userService.findAllOrdersForUser(this.userId)
@@ -1008,6 +1010,9 @@ var MyOrdersComponent = /** @class */ (function () {
         console.log('deleting this part from the orders list: ' + partId);
         this.userService.removeOrder(this.userId, partId)
             .subscribe(function () { return _this.router.navigate(['/user', _this.userId, 'my-garage', 'orders']); });
+    };
+    MyOrdersComponent.prototype.backOnePage = function () {
+        this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage']);
     };
     MyOrdersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1176,7 +1181,7 @@ var EditPartsComponent = /** @class */ (function () {
             .subscribe(function () { return _this.backOnePage(); });
     };
     EditPartsComponent.prototype.backOnePage = function () {
-        this.router.navigate(['/user', this.uid, 'my-garage']);
+        this.router.navigate(['/user', this.uid, 'store', this.storeId, 'my-garage']);
     };
     EditPartsComponent.prototype.getOldPartName = function () {
         console.log('calling get old part name');
@@ -1268,7 +1273,7 @@ var NewPartComponent = /** @class */ (function () {
         });
     };
     NewPartComponent.prototype.backOnePage = function (storeId) {
-        this.router.navigate(['user', this.uid, 'store', storeId, 'my-garage']);
+        this.router.navigate(['/user', this.uid, 'store', storeId, 'my-garage']);
     };
     NewPartComponent.prototype.newPart = function (userId, storeId) {
         var _this = this;

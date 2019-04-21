@@ -32,7 +32,7 @@ export class NewPartComponent implements OnInit {
   }
 
   backOnePage(storeId) {
-    this.router.navigate(['user', this.uid, 'store', storeId, 'my-garage'])
+    this.router.navigate(['/user', this.uid, 'store', storeId, 'my-garage'])
   }
 
   newPart(userId, storeId) {

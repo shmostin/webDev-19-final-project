@@ -65,7 +65,7 @@ export class EditPartsComponent implements OnInit {
   }
 
   backOnePage() {
-    this.router.navigate(['/user', this.uid, 'my-garage']);
+    this.router.navigate(['/user', this.uid, 'store', this.storeId, 'my-garage']);
   }
 
   getOldPartName() {
