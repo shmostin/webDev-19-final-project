@@ -32,8 +32,8 @@ export class NewPartComponent implements OnInit {
       });
   }
 
-  backOnePage(storeId) {
-    this.router.navigate(['/user', this.userId, 'store', storeId, 'my-garage'])
+  backOnePage() {
+    this.router.navigate(['/user', this.userId, 'store', this.storeId, 'my-garage'])
   }
 
   newPart() {
